@@ -1,0 +1,179 @@
+
+    
+    <div id="landingPage" class="landing-page">
+        <div class="floating-hearts" id="floating-hearts"></div>
+        <div class="container">
+            <h1 class="greeting">Hello</h1>
+            <h2 class="my-love">my love</h2>
+            <p class="question">Do you want your gift?</p>
+            <div class="button-container">
+                <button id="yesButton" class="choice-button yes-button">Yes</button>
+                <button id="noButton" class="choice-button no-button">No</button>
+            </div>
+        </div>
+    </div>
+
+    
+    <div id="giftPage" class="gift-page">
+        <header class="gift-header">
+            <div class="container">
+                <h1 class="gift-title">Your Special Gifts</h1>
+                <p class="gift-subtitle">Choose a gift to open</p>
+            </div>
+        </header>
+
+        <div class="container">
+            <div class="gift-grid">
+                <div class="gift-card" id="memoriesCard">
+                    <div class="gift-icon">
+                        <i class="fas fa-images"></i>
+                    </div>
+                    <h3>Our Memories</h3>
+                    <p>A collection of our special moments together</p>
+                </div>
+
+                <div class="gift-card" id="flowersCard">
+                    <div class="gift-icon">
+                        <i class="fas fa-spa"></i>
+                    </div>
+                    <h3>Virtual Flowers</h3>
+                    <p>A bouquet that never fades</p>
+                </div>
+
+                <div class="gift-card" id="letterCard">
+                    <div class="gift-icon">
+                        <i class="fas fa-envelope-open-text"></i>
+                    </div>
+                    <h3>Love Letter</h3>
+                    <p>Words from my heart to yours</p>
+                </div>
+
+                <div class="gift-card" id="timelineCard">
+                    <div class="gift-icon">
+                        <i class="fas fa-heart"></i>
+                    </div>
+                    <h3>Our Journey</h3>
+                    <p>From when we met to where we are now</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    
+    <div id="memoriesModal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal">×</span>
+            <h2 class="modal-title">Our Memories</h2>
+            <p>Special moments we've shared together</p>
+            <div class="memories-gallery">
+                <div class="memory-item">
+                    <img src="https://picsum.photos/seed/couple1/400/300.jpg" alt="Our memory">
+                    <div class="memory-caption">Our First Date</div>
+                </div>
+                <div class="memory-item">
+                    <img src="https://picsum.photos/seed/couple2/400/300.jpg" alt="Our memory">
+                    <div class="memory-caption">Favorite Vacation</div>
+                </div>
+                <div class="memory-item">
+                    <img src="https://picsum.photos/seed/couple3/400/300.jpg" alt="Our memory">
+                    <div class="memory-caption">Anniversary Dinner</div>
+                </div>
+                <div class="memory-item">
+                    <img src="https://picsum.photos/seed/couple4/400/300.jpg" alt="Our memory">
+                    <div class="memory-caption">Weekend Getaway</div>
+                </div>
+                <div class="memory-item">
+                    <img src="https://picsum.photos/seed/couple5/400/300.jpg" alt="Our memory">
+                    <div class="memory-caption">Celebrating Together</div>
+                </div>
+                <div class="memory-item">
+                    <img src="https://picsum.photos/seed/couple6/400/300.jpg" alt="Our memory">
+                    <div class="memory-caption">Just Being Us</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    
+    <div id="flowersModal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal">×</span>
+            <h2 class="modal-title">A Bouquet For You</h2>
+            <p>Click on any flower to make it bloom</p>
+            <div class="flower-container">
+                <div class="flower">🌹</div>
+                <div class="flower">🌸</div>
+                <div class="flower">🌺</div>
+                <div class="flower">🌷</div>
+                <div class="flower">🌻</div>
+                <div class="flower">🌼</div>
+                <div class="flower">💐</div>
+                <div class="flower">🌹</div>
+                <div class="flower">🌸</div>
+            </div>
+        </div>
+    </div>
+
+    
+    <div id="letterModal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal">×</span>
+            <h2 class="modal-title">A Letter For My Love</h2>
+            <div class="letter">
+                <p>My dearest Aisha,</p>
+                <p>I wanted to take a moment to tell you just how much you mean to me. From the day we met, you've brought so much light and happiness into my life. Your smile brightens my darkest days, and your laugh is my favorite sound in the world.</p>
+                <p>I love the way you care for others, the passion you have for your dreams, and the strength you show every day. Being with you has made me a better person, and I'm grateful for every moment we share together.</p>
+                <p>You are my rock, my confidant, and my best friend. I cherish our memories and look forward to creating many more with you. Thank you for being the amazing person you are.</p>
+                <p>Forever yours,</p>
+                <p class="letter-signature">With all my love</p>
+            </div>
+        </div>
+    </div>
+
+    
+    <div id="timelineModal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal">×</span>
+            <h2 class="modal-title">Our Journey Together</h2>
+            <div class="days-counter">
+                We've been together for
+                <span class="days-number" id="daysCounter"></span>
+                days
+            </div>
+            <div class="timeline-container">
+                <div class="timeline-item left">
+                    <div class="timeline-content">
+                        <div class="timeline-date">June 25, 2022</div>
+                        <p>The day we met and my world changed forever</p>
+                    </div>
+                </div>
+                <div class="timeline-item right">
+                    <div class="timeline-content">
+                        <div class="timeline-date">Our First Date</div>
+                        <p>Nervous laughter, deep conversations, and the beginning of something beautiful</p>
+                    </div>
+                </div>
+                <div class="timeline-item left">
+                    <div class="timeline-content">
+                        <div class="timeline-date">First "I Love You"</div>
+                        <p>Three little words that changed everything between us</p>
+                    </div>
+                </div>
+                <div class="timeline-item right">
+                    <div class="timeline-content">
+                        <div class="timeline-date">Our Adventures</div>
+                        <p>Exploring the world together and creating memories that will last a lifetime</p>
+                    </div>
+                </div>
+                <div class="timeline-item left">
+                    <div class="timeline-content">
+                        <div class="timeline-date">Today</div>
+                        <p>Still falling for you more every single day</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    
+
