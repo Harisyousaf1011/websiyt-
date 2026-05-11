@@ -329,19 +329,12 @@
         height: auto;
         border-radius: 15px;
         box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
-        margin: 0 auto 20px;
+        margin: 0 auto 30px;
         transition: transform 0.3s;
     }
 
     .daily-photo-image:hover {
         transform: scale(1.02);
-    }
-
-    .daily-photo-caption {
-        font-size: 18px;
-        color: var(--text-color);
-        margin-bottom: 30px;
-        font-style: italic;
     }
 
     .photo-navigation {
@@ -609,7 +602,6 @@
         .flower-message { font-size: 20px; }
         .memories-gallery { grid-template-columns: 1fr; }
         .daily-photo-date { font-size: 24px; }
-        .daily-photo-caption { font-size: 16px; }
     }
 </style>
 </head> <body> <!-- Landing Page --> <div id="landingPage" class="landing-page"> <div class="floating-hearts" id="floating-hearts"></div> <div class="container"> <h1 class="greeting">Hello</h1> <h2 class="my-love">my love</h2> <p class="question">Do you want your gift?</p> <div class="button-container"> <button id="yesButton" class="choice-button yes-button">Yes</button> <button id="noButton" class="choice-button no-button">No</button> </div> </div> </div>
@@ -688,7 +680,6 @@
         <div class="daily-photo-container">
             <div class="daily-photo-date" id="dailyPhotoDate"></div>
             <img class="daily-photo-image" id="dailyPhotoImage" src="" alt="Today's special photo">
-            <p class="daily-photo-caption" id="dailyPhotoCaption"></p>
             <div class="photo-navigation">
                 <button class="photo-nav-button" id="prevPhotoBtn"><i class="fas fa-chevron-left"></i> Previous</button>
                 <button class="photo-nav-button" id="todayPhotoBtn">Today</button>
@@ -880,46 +871,54 @@
         }, stepTime);
     }
 
-    // Daily Photo functionality
+    // Daily Photo functionality - updated with your new photos
     const dailyPhotos = [
-        {
-            url: "https://i.postimg.cc/PC2hthbn/IMG-20240616-WA0014.jpg",
-            caption: "Remember this beautiful day? Every moment with you is precious."
-        },
-        {
-            url: "https://i.postimg.cc/XGy0cCRq/IMG-20240616-WA0015.jpg",
-            caption: "Your smile lights up my world every single day."
-        },
-        {
-            url: "https://i.postimg.cc/DSjV96Fn/IMG-20240616-WA0016.jpg",
-            caption: "Together is my favorite place to be."
-        },
-        {
-            url: "https://i.postimg.cc/LYyYXWFv/IMG-20240616-WA0017.jpg",
-            caption: "Making memories that will last a lifetime with you."
-        },
-        {
-            url: "https://i.postimg.cc/PC2hthbn/IMG-20240616-WA0014.jpg",
-            caption: "Every day with you is a gift I cherish."
-        }
-        // Add more photos here as needed
+        "https://i.postimg.cc/tsCwhYCN",
+        "https://i.postimg.cc/YG1dcHCq",
+        "https://i.postimg.cc/kDCm2M8V",
+        "https://i.postimg.cc/zVXYkdx0",
+        "https://i.postimg.cc/WF6xGrrq",
+        "https://i.postimg.cc/JtMf16Vj",
+        "https://i.postimg.cc/YhSTFvSh",
+        "https://i.postimg.cc/06GVFvNT",
+        "https://i.postimg.cc/r0QQy95T",
+        "https://i.postimg.cc/147JLJ9t",
+        "https://i.postimg.cc/mcSSVSXF",
+        "https://i.postimg.cc/PNJMzYmt",
+        "https://i.postimg.cc/8jrBxGXT",
+        "https://i.postimg.cc/jWRHW7sG",
+        "https://i.postimg.cc/njzq2f9g",
+        "https://i.postimg.cc/Fkk3tbZf",
+        "https://i.postimg.cc/7bjS3cPr",
+        "https://i.postimg.cc/K12LVMgM",
+        "https://i.postimg.cc/zLDhDYj9",
+        "https://i.postimg.cc/dkLTdRg9"
     ];
 
     let currentPhotoIndex = 0;
+    let todayPhotoIndex = 0;
 
     function loadDailyPhoto() {
-        // Calculate which photo to show based on today's date
+        // Generate a pseudo-random index based on today's date
         const today = new Date();
-        const startDate = new Date('2025-05-25'); // Start date for the photo cycle
-        const daysDiff = Math.floor((today - startDate) / (1000 * 60 * 60 * 24));
-        currentPhotoIndex = daysDiff % dailyPhotos.length;
+        const seed = today.getFullYear() * 10000 + (today.getMonth() + 1) * 100 + today.getDate();
+        
+        // Simple seeded random function
+        function seededRandom(seed) {
+            const x = Math.sin(seed) * 10000;
+            return x - Math.floor(x);
+        }
+        
+        // Get today's random photo index
+        todayPhotoIndex = Math.floor(seededRandom(seed) * dailyPhotos.length);
+        currentPhotoIndex = todayPhotoIndex;
         
         // Update the photo display
         updateDailyPhotoDisplay();
     }
 
     function updateDailyPhotoDisplay() {
-        const photo = dailyPhotos[currentPhotoIndex];
+        const photoUrl = dailyPhotos[currentPhotoIndex];
         const photoDate = new Date();
         
         // Format the date
@@ -928,8 +927,7 @@
         
         // Update the modal content
         document.getElementById('dailyPhotoDate').textContent = formattedDate;
-        document.getElementById('dailyPhotoImage').src = photo.url;
-        document.getElementById('dailyPhotoCaption').textContent = photo.caption;
+        document.getElementById('dailyPhotoImage').src = photoUrl;
         
         // Update navigation buttons
         document.getElementById('prevPhotoBtn').disabled = currentPhotoIndex === 0;
