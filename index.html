@@ -1,985 +1,1017 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Aisha 💕</title>
-    <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;700&family=Poppins:wght@300;400;600&family=Permanent+Marker&display=swap" rel="stylesheet">
-    <!-- Font Awesome for Icons -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    
-    <style>
-        :root {
-            --primary-color: #e63946;
-            --secondary-color: #f1faee;
-            --accent-color: #a8dadc;
-            --text-color: #1d3557;
-            --light-text: #457b9d;
-            --bg-color: #ffffff;
-            --card-bg: #ffffff;
-            --heart-color: #e63946;
-            --button-hover: #d62828;
-        }
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            -webkit-tap-highlight-color: transparent;
-        }
-
-        body {
-            font-family: 'Poppins', sans-serif;
-            color: var(--text-color);
-            line-height: 1.6;
-            background-color: var(--bg-color);
-            overflow-x: hidden;
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-            -webkit-font-smoothing: antialiased;
-            -moz-osx-font-smoothing: grayscale;
-        }
-
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 20px;
-        }
-
-        /* Landing Page Styles */
-        .landing-page {
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            min-height: 100vh;
-            background: linear-gradient(135deg, #ff9a9e 0%, #fecfef 50%, #fecfef 100%);
-            text-align: center;
-            position: relative;
-            overflow: hidden;
-            padding: 20px;
-        }
-
-        .floating-hearts {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            pointer-events: none;
-            z-index: 1;
-        }
-
-        .floating-heart {
-            position: absolute;
-            font-size: 20px;
-            color: var(--heart-color);
-            opacity: 0.7;
-            animation: float-up 4s linear infinite;
-            will-change: transform;
-        }
-
-        @keyframes float-up {
-            0% { transform: translateY(100vh) rotate(0deg); opacity: 0; }
-            10% { opacity: 0.7; }
-            90% { opacity: 0.7; }
-            100% { transform: translateY(-100vh) rotate(360deg); opacity: 0; }
-        }
-
-        .greeting {
-            font-size: 32px;
-            margin-bottom: 20px;
-            color: var(--text-color);
-            animation: fadeIn 1.5s ease-in-out;
-            z-index: 2;
-        }
-
-        .my-love {
-            font-family: 'Permanent Marker', cursive;
-            font-size: 48px;
-            color: var(--primary-color);
-            margin-bottom: 40px;
-            animation: pulse 2s infinite;
-            z-index: 2;
-        }
-
-        @keyframes pulse {
-            0% { transform: scale(1); }
-            50% { transform: scale(1.05); }
-            100% { transform: scale(1); }
-        }
-
-        @keyframes fadeIn {
-            0% { opacity: 0; transform: translateY(20px); }
-            100% { opacity: 1; transform: translateY(0); }
-        }
-
-        .question {
-            font-size: 24px;
-            margin-bottom: 30px;
-            color: var(--text-color);
-            animation: fadeIn 2s ease-in-out;
-            z-index: 2;
-        }
-
-        .button-container {
-            display: flex;
-            gap: 30px;
-            margin-top: 20px;
-            z-index: 2;
-            flex-wrap: wrap;
-            justify-content: center;
-        }
-
-        .choice-button {
-            padding: 15px 30px;
-            font-size: 18px;
-            border: none;
-            border-radius: 30px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            font-weight: 600;
-            min-width: 120px;
-        }
-
-        .yes-button {
-            background-color: var(--primary-color);
-            color: white;
-        }
-
-        .yes-button:hover {
-            background-color: var(--button-hover);
-            transform: scale(1.05);
-        }
-
-        .no-button {
-            background-color: #f8f9fa;
-            color: var(--text-color);
-            border: 2px solid var(--primary-color);
-        }
-
-        .no-button:hover {
-            background-color: rgba(230, 57, 70, 0.1);
-        }
-
-        /* Gift Page Styles */
-        .gift-page {
-            display: none;
-            min-height: 100vh;
-            background: linear-gradient(135deg, #ff9a9e 0%, #fecfef 50%, #fecfef 100%);
-            padding: 20px 0;
-        }
-
-        .gift-header {
-            text-align: center;
-            padding: 40px 0;
-        }
-
-        .gift-title {
-            font-family: 'Dancing Script', cursive;
-            font-size: 56px;
-            color: var(--text-color);
-            margin-bottom: 10px;
-        }
-
-        .gift-subtitle {
-            font-size: 20px;
-            color: var(--light-text);
-        }
-
-        .gift-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 30px;
-            padding: 20px 0 60px;
-        }
-
-        .gift-card {
-            background-color: white;
-            border-radius: 15px;
-            padding: 30px;
-            box-shadow: 0 10px 30px rgba(230, 57, 70, 0.1);
-            transition: transform 0.3s, box-shadow 0.3s;
-            cursor: pointer;
-            text-align: center;
-            position: relative;
-            overflow: hidden;
-            -webkit-transform: translateZ(0);
-            transform: translateZ(0);
-        }
-
-        .gift-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 15px 35px rgba(230, 57, 70, 0.2);
-        }
-
-        .gift-card:active {
-            transform: translateY(-5px);
-        }
-
-        .gift-icon {
-            font-size: 48px;
-            color: var(--primary-color);
-            margin-bottom: 20px;
-        }
-
-        .gift-card h3 {
-            font-size: 24px;
-            margin-bottom: 15px;
-            color: var(--text-color);
-        }
-
-        .gift-card p {
-            color: var(--light-text);
-            margin-bottom: 20px;
-        }
-
-        /* Modal Styles */
-        .modal {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0, 0, 0, 0.7);
-            z-index: 200;
-            justify-content: center;
-            align-items: center;
-            overflow-y: auto;
-            padding: 20px;
-        }
-
-        .modal-content {
-            background-color: white;
-            padding: 40px;
-            border-radius: 15px;
-            max-width: 800px;
-            width: 90%;
-            position: relative;
-            animation: modalFadeIn 0.5s;
-            max-height: 90vh;
-            overflow-y: auto;
-        }
-
-        @keyframes modalFadeIn {
-            from { opacity: 0; transform: scale(0.8); }
-            to { opacity: 1; transform: scale(1); }
-        }
-
-        .close-modal {
-            position: absolute;
-            top: 15px;
-            right: 20px;
-            font-size: 28px;
-            cursor: pointer;
-            color: var(--light-text);
-            transition: color 0.3s;
-            z-index: 10;
-        }
-
-        .close-modal:hover {
-            color: var(--primary-color);
-        }
-
-        .modal-title {
-            font-family: 'Dancing Script', cursive;
-            font-size: 42px;
-            color: var(--primary-color);
-            margin-bottom: 20px;
-            text-align: center;
-        }
-
-        /* Memories Gallery */
-        .memories-gallery {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 20px;
-            margin-top: 20px;
-        }
-
-        .memory-item {
-            border-radius: 15px;
-            overflow: hidden;
-            height: 250px;
-            position: relative;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-            transition: transform 0.3s;
-        }
-
-        .memory-item:hover {
-            transform: scale(1.03);
-        }
-
-        .memory-item img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-
-        /* Photo of the Day Styles */
-        .photo-day-container {
-            text-align: center;
-            padding: 20px;
-        }
-
-        .photo-day-date {
-            font-family: 'Dancing Script', cursive;
-            font-size: 28px;
-            color: var(--primary-color);
-            margin-bottom: 20px;
-        }
-
-        .photo-day-image-container {
-            position: relative;
-            border-radius: 20px;
-            overflow: hidden;
-            box-shadow: 0 15px 40px rgba(230, 57, 70, 0.2);
-            max-width: 600px;
-            margin: 0 auto;
-        }
-
-        .photo-day-image {
-            width: 100%;
-            display: block;
-            border-radius: 20px;
-        }
-
-        .photo-day-caption {
-            font-family: 'Poppins', sans-serif;
-            font-size: 18px;
-            color: var(--text-color);
-            margin-top: 20px;
-            padding: 15px;
-            background-color: #f9f7f4;
-            border-radius: 10px;
-            border-left: 4px solid var(--primary-color);
-        }
-
-        .photo-day-nav {
-            display: flex;
-            justify-content: center;
-            gap: 20px;
-            margin-top: 25px;
-        }
-
-        .photo-day-nav button {
-            background-color: var(--primary-color);
-            color: white;
-            border: none;
-            border-radius: 50%;
-            width: 50px;
-            height: 50px;
-            cursor: pointer;
-            font-size: 20px;
-            transition: all 0.3s ease;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .photo-day-nav button:hover {
-            background-color: var(--button-hover);
-            transform: scale(1.1);
-        }
-
-        .photo-counter {
-            font-size: 16px;
-            color: var(--light-text);
-            margin-top: 15px;
-        }
-
-        /* Love Letter */
-        .letter {
-            background-color: #f9f7f4;
-            padding: 30px;
-            border-radius: 10px;
-            font-family: 'Poppins', sans-serif;
-            font-size: 18px;
-            line-height: 1.8;
-            color: var(--text-color);
-            position: relative;
-            margin-top: 20px;
-        }
-
-        .letter::before {
-            content: "";
-            position: absolute;
-            top: 10px;
-            left: 10px;
-            right: 10px;
-            bottom: 10px;
-            border: 2px solid var(--primary-color);
-            border-radius: 5px;
-            pointer-events: none;
-        }
-
-        .letter-signature {
-            text-align: right;
-            margin-top: 20px;
-            font-size: 20px;
-            font-weight: 600;
-        }
-
-        /* Love Counter */
-        .love-counter {
-            text-align: center;
-            padding: 20px 0;
-        }
-
-        .counter-title {
-            font-family: 'Dancing Script', cursive;
-            font-size: 36px;
-            color: var(--primary-color);
-            margin-bottom: 30px;
-        }
-
-        .counter-display {
-            display: flex;
-            justify-content: center;
-            flex-wrap: wrap;
-            gap: 20px;
-            margin-bottom: 30px;
-        }
-
-        .counter-unit {
-            background-color: white;
-            border-radius: 15px;
-            padding: 20px;
-            min-width: 120px;
-            box-shadow: 0 5px 15px rgba(230, 57, 70, 0.1);
-        }
-
-        .counter-value {
-            font-size: 42px;
-            font-weight: 700;
-            color: var(--primary-color);
-            display: block;
-            margin-bottom: 5px;
-        }
-
-        .counter-label {
-            font-size: 16px;
-            color: var(--light-text);
-        }
-
-        /* Heart Animation */
-        .heart-animation {
-            display: flex;
-            justify-content: center;
-            margin: 30px 0;
-        }
-
-        .heart-path {
-            position: relative;
-            width: 300px;
-            height: 300px;
-        }
-
-        .heart-beat {
-            position: absolute;
-            font-size: 30px;
-            color: var(--heart-color);
-            animation: heartBeat 1.5s infinite;
-            will-change: transform;
-        }
-
-        @keyframes heartBeat {
-            0% { transform: scale(1); opacity: 0.7; }
-            50% { transform: scale(1.2); opacity: 1; }
-            100% { transform: scale(1); opacity: 0.7; }
-        }
-
-        /* Flower Bouquet */
-        .bouquet-container {
-            position: relative;
-            height: 400px;
-            margin: 20px 0;
-            display: flex;
-            justify-content: center;
-            align-items: flex-end;
-            background: linear-gradient(to bottom, #87CEEB 0%, #87CEEB 60%, #f5f5f5 60%, #f5f5f5 100%);
-            border-radius: 15px;
-            overflow: hidden;
-            touch-action: manipulation;
-        }
-
-        .bouquet-wrapper {
-            position: relative;
-            width: 100%;
-            height: 100%;
-            display: flex;
-            justify-content: center;
-            align-items: flex-end;
-        }
-
-        .flower-item {
-            position: absolute;
-            cursor: pointer;
-            transition: transform 0.3s, opacity 0.3s;
-            z-index: 2;
-            touch-action: manipulation;
-            user-select: none;
-            -webkit-user-select: none;
-        }
-
-        .flower-item:hover {
-            transform: scale(1.1) translateY(-10px);
-        }
-
-        .flower-item:active {
-            transform: scale(1.05) translateY(-5px);
-        }
-
-        .flower-item.clicked {
-            animation: flowerClick 1s ease-out;
-        }
-
-        @keyframes flowerClick {
-            0% { transform: scale(1) rotate(0deg); }
-            50% { transform: scale(1.3) rotate(10deg); }
-            100% { transform: scale(1) rotate(0deg); }
-        }
-
-        .flower-message {
-            position: absolute;
-            top: 20px;
-            left: 0;
-            width: 100%;
-            text-align: center;
-            font-family: 'Dancing Script', cursive;
-            font-size: 28px;
-            color: var(--primary-color);
-            opacity: 0;
-            transition: opacity 0.5s;
-            z-index: 3;
-        }
-
-        .flower-message.show {
-            opacity: 1;
-        }
-
-        .vase {
-            position: absolute;
-            bottom: 0;
-            width: 120px;
-            height: 80px;
-            background-color: #4a90e2;
-            border-radius: 0 0 60px 60px;
-            z-index: 1;
-        }
-
-        .vase::before {
-            content: "";
-            position: absolute;
-            top: -10px;
-            left: -10px;
-            right: -10px;
-            height: 20px;
-            background-color: #4a90e2;
-            border-radius: 10px 10px 0 0;
-        }
-
-        /* Responsive Design */
-        @media (max-width: 768px) {
-            .greeting { font-size: 24px; }
-            .my-love { font-size: 36px; }
-            .question { font-size: 20px; }
-            .button-container { flex-direction: column; align-items: center; }
-            .gift-title { font-size: 42px; }
-            .gift-subtitle { font-size: 18px; }
-            .memories-gallery { grid-template-columns: repeat(2, 1fr); }
-            .counter-display { flex-direction: column; align-items: center; }
-            .counter-unit { width: 100%; max-width: 300px; }
-            .heart-path { width: 200px; height: 200px; }
-            .bouquet-container { height: 300px; }
-            .modal-content { padding: 30px 20px; }
-            .modal-title { font-size: 36px; }
-            .letter { font-size: 16px; }
-            .flower-message { font-size: 24px; }
-            .photo-day-date { font-size: 22px; }
-        }
-
-        /* iPad specific styles */
-        @media (min-width: 768px) and (max-width: 1024px) {
-            .gift-grid { grid-template-columns: repeat(2, 1fr); }
-            .memories-gallery { grid-template-columns: repeat(2, 1fr); }
-        }
-
-        /* iPhone specific styles */
-        @media (max-width: 414px) {
-            .greeting { font-size: 20px; }
-            .my-love { font-size: 28px; }
-            .question { font-size: 18px; }
-            .choice-button { padding: 12px 24px; font-size: 16px; }
-            .gift-title { font-size: 32px; }
-            .gift-subtitle { font-size: 16px; }
-            .gift-icon { font-size: 36px; }
-            .gift-card { padding: 20px; }
-            .gift-card h3 { font-size: 20px; }
-            .gift-card p { font-size: 14px; }
-            .modal-title { font-size: 28px; }
-            .counter-value { font-size: 36px; }
-            .counter-label { font-size: 14px; }
-            .letter { font-size: 14px; padding: 20px; }
-            .letter-signature { font-size: 16px; }
-            .flower-message { font-size: 20px; }
-            .memories-gallery { grid-template-columns: 1fr; }
-            .photo-day-nav button { width: 40px; height: 40px; font-size: 16px; }
-            .photo-day-caption { font-size: 14px; }
-        }
-    </style>
-</head>
-<body>
-    <!-- Landing Page -->
-    <div id="landingPage" class="landing-page">
-        <div class="floating-hearts" id="floating-hearts"></div>
+<html lang="en"> <head> <meta charset="UTF-8"> <meta name="viewport" content="width=device-width, initial-scale=1.0"> <title>Aisha 💕</title> <!-- Google Fonts --> <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;700&family=Poppins:wght@300;400;600&family=Permanent+Marker&display=swap" rel="stylesheet"> <!-- Font Awesome for Icons --> <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<style>
+    :root {
+        --primary-color: #e63946;
+        --secondary-color: #f1faee;
+        --accent-color: #a8dadc;
+        --text-color: #1d3557;
+        --light-text: #457b9d;
+        --bg-color: #ffffff;
+        --card-bg: #ffffff;
+        --heart-color: #e63946;
+        --button-hover: #d62828;
+    }
+
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        -webkit-tap-highlight-color: transparent;
+    }
+
+    body {
+        font-family: 'Poppins', sans-serif;
+        color: var(--text-color);
+        line-height: 1.6;
+        background-color: var(--bg-color);
+        overflow-x: hidden;
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+    }
+
+    .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 20px;
+    }
+
+    /* Landing Page Styles */
+    .landing-page {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+        background: linear-gradient(135deg, #ff9a9e 0%, #fecfef 50%, #fecfef 100%);
+        text-align: center;
+        position: relative;
+        overflow: hidden;
+        padding: 20px;
+    }
+
+    .floating-hearts {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        pointer-events: none;
+        z-index: 1;
+    }
+
+    .floating-heart {
+        position: absolute;
+        font-size: 20px;
+        color: var(--heart-color);
+        opacity: 0.7;
+        animation: float-up 4s linear infinite;
+        will-change: transform;
+    }
+
+    @keyframes float-up {
+        0% { transform: translateY(100vh) rotate(0deg); opacity: 0; }
+        10% { opacity: 0.7; }
+        90% { opacity: 0.7; }
+        100% { transform: translateY(-100vh) rotate(360deg); opacity: 0; }
+    }
+
+    .greeting {
+        font-size: 32px;
+        margin-bottom: 20px;
+        color: var(--text-color);
+        animation: fadeIn 1.5s ease-in-out;
+        z-index: 2;
+    }
+
+    .my-love {
+        font-family: 'Permanent Marker', cursive;
+        font-size: 48px;
+        color: var(--primary-color);
+        margin-bottom: 40px;
+        animation: pulse 2s infinite;
+        z-index: 2;
+    }
+
+    @keyframes pulse {
+        0% { transform: scale(1); }
+        50% { transform: scale(1.05); }
+        100% { transform: scale(1); }
+    }
+
+    @keyframes fadeIn {
+        0% { opacity: 0; transform: translateY(20px); }
+        100% { opacity: 1; transform: translateY(0); }
+    }
+
+    .question {
+        font-size: 24px;
+        margin-bottom: 30px;
+        color: var(--text-color);
+        animation: fadeIn 2s ease-in-out;
+        z-index: 2;
+    }
+
+    .button-container {
+        display: flex;
+        gap: 30px;
+        margin-top: 20px;
+        z-index: 2;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    .choice-button {
+        padding: 15px 30px;
+        font-size: 18px;
+        border: none;
+        border-radius: 30px;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        font-weight: 600;
+        min-width: 120px;
+    }
+
+    .yes-button {
+        background-color: var(--primary-color);
+        color: white;
+    }
+
+    .yes-button:hover {
+        background-color: var(--button-hover);
+        transform: scale(1.05);
+    }
+
+    .no-button {
+        background-color: #f8f9fa;
+        color: var(--text-color);
+        border: 2px solid var(--primary-color);
+    }
+
+    .no-button:hover {
+        background-color: rgba(230, 57, 70, 0.1);
+    }
+
+    /* Gift Page Styles */
+    .gift-page {
+        display: none;
+        min-height: 100vh;
+        background: linear-gradient(135deg, #ff9a9e 0%, #fecfef 50%, #fecfef 100%);
+        padding: 20px 0;
+    }
+
+    .gift-header {
+        text-align: center;
+        padding: 40px 0;
+    }
+
+    .gift-title {
+        font-family: 'Dancing Script', cursive;
+        font-size: 56px;
+        color: var(--text-color);
+        margin-bottom: 10px;
+    }
+
+    .gift-subtitle {
+        font-size: 20px;
+        color: var(--light-text);
+    }
+
+    .gift-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 30px;
+        padding: 20px 0 60px;
+    }
+
+    .gift-card {
+        background-color: white;
+        border-radius: 15px;
+        padding: 30px;
+        box-shadow: 0 10px 30px rgba(230, 57, 70, 0.1);
+        transition: transform 0.3s, box-shadow 0.3s;
+        cursor: pointer;
+        text-align: center;
+        position: relative;
+        overflow: hidden;
+        -webkit-transform: translateZ(0);
+        transform: translateZ(0);
+    }
+
+    .gift-card:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 15px 35px rgba(230, 57, 70, 0.2);
+    }
+
+    .gift-card:active {
+        transform: translateY(-5px);
+    }
+
+    .gift-icon {
+        font-size: 48px;
+        color: var(--primary-color);
+        margin-bottom: 20px;
+    }
+
+    .gift-card h3 {
+        font-size: 24px;
+        margin-bottom: 15px;
+        color: var(--text-color);
+    }
+
+    .gift-card p {
+        color: var(--light-text);
+        margin-bottom: 20px;
+    }
+
+    /* Modal Styles */
+    .modal {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.7);
+        z-index: 200;
+        justify-content: center;
+        align-items: center;
+        overflow-y: auto;
+        padding: 20px;
+    }
+
+    .modal-content {
+        background-color: white;
+        padding: 40px;
+        border-radius: 15px;
+        max-width: 800px;
+        width: 90%;
+        position: relative;
+        animation: modalFadeIn 0.5s;
+        max-height: 90vh;
+        overflow-y: auto;
+    }
+
+    @keyframes modalFadeIn {
+        from { opacity: 0; transform: scale(0.8); }
+        to { opacity: 1; transform: scale(1); }
+    }
+
+    .close-modal {
+        position: absolute;
+        top: 15px;
+        right: 20px;
+        font-size: 28px;
+        cursor: pointer;
+        color: var(--light-text);
+        transition: color 0.3s;
+        z-index: 10;
+    }
+
+    .close-modal:hover {
+        color: var(--primary-color);
+    }
+
+    .modal-title {
+        font-family: 'Dancing Script', cursive;
+        font-size: 42px;
+        color: var(--primary-color);
+        margin-bottom: 20px;
+        text-align: center;
+    }
+
+    /* Memories Gallery */
+    .memories-gallery {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 20px;
+        margin-top: 20px;
+    }
+
+    .memory-item {
+        border-radius: 15px;
+        overflow: hidden;
+        height: 250px;
+        position: relative;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        transition: transform 0.3s;
+    }
+
+    .memory-item:hover {
+        transform: scale(1.03);
+    }
+
+    .memory-item img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+
+    /* Daily Photo Styles */
+    .daily-photo-container {
+        text-align: center;
+        margin-top: 20px;
+    }
+
+    .daily-photo-date {
+        font-family: 'Dancing Script', cursive;
+        font-size: 28px;
+        color: var(--primary-color);
+        margin-bottom: 20px;
+    }
+
+    .daily-photo-image {
+        width: 100%;
+        max-width: 600px;
+        height: auto;
+        border-radius: 15px;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+        margin: 0 auto 20px;
+        transition: transform 0.3s;
+    }
+
+    .daily-photo-image:hover {
+        transform: scale(1.02);
+    }
+
+    .daily-photo-caption {
+        font-size: 18px;
+        color: var(--text-color);
+        margin-bottom: 30px;
+        font-style: italic;
+    }
+
+    .photo-navigation {
+        display: flex;
+        justify-content: center;
+        gap: 20px;
+        margin-top: 30px;
+    }
+
+    .photo-nav-button {
+        background-color: var(--primary-color);
+        color: white;
+        border: none;
+        padding: 10px 20px;
+        border-radius: 30px;
+        cursor: pointer;
+        font-size: 16px;
+        transition: background-color 0.3s, transform 0.3s;
+    }
+
+    .photo-nav-button:hover {
+        background-color: var(--button-hover);
+        transform: scale(1.05);
+    }
+
+    .photo-nav-button:disabled {
+        background-color: #cccccc;
+        cursor: not-allowed;
+        transform: scale(1);
+    }
+
+    /* Love Letter */
+    .letter {
+        background-color: #f9f7f4;
+        padding: 30px;
+        border-radius: 10px;
+        font-family: 'Poppins', sans-serif;
+        font-size: 18px;
+        line-height: 1.8;
+        color: var(--text-color);
+        position: relative;
+        margin-top: 20px;
+    }
+
+    .letter::before {
+        content: "";
+        position: absolute;
+        top: 10px;
+        left: 10px;
+        right: 10px;
+        bottom: 10px;
+        border: 2px solid var(--primary-color);
+        border-radius: 5px;
+        pointer-events: none;
+    }
+
+    .letter-signature {
+        text-align: right;
+        margin-top: 20px;
+        font-size: 20px;
+        font-weight: 600;
+    }
+
+    /* Love Counter */
+    .love-counter {
+        text-align: center;
+        padding: 20px 0;
+    }
+
+    .counter-title {
+        font-family: 'Dancing Script', cursive;
+        font-size: 36px;
+        color: var(--primary-color);
+        margin-bottom: 30px;
+    }
+
+    .counter-display {
+        display: flex;
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 20px;
+        margin-bottom: 30px;
+    }
+
+    .counter-unit {
+        background-color: white;
+        border-radius: 15px;
+        padding: 20px;
+        min-width: 120px;
+        box-shadow: 0 5px 15px rgba(230, 57, 70, 0.1);
+    }
+
+    .counter-value {
+        font-size: 42px;
+        font-weight: 700;
+        color: var(--primary-color);
+        display: block;
+        margin-bottom: 5px;
+    }
+
+    .counter-label {
+        font-size: 16px;
+        color: var(--light-text);
+    }
+
+    /* Heart Animation */
+    .heart-animation {
+        display: flex;
+        justify-content: center;
+        margin: 30px 0;
+    }
+
+    .heart-path {
+        position: relative;
+        width: 300px;
+        height: 300px;
+    }
+
+    .heart-beat {
+        position: absolute;
+        font-size: 30px;
+        color: var(--heart-color);
+        animation: heartBeat 1.5s infinite;
+        will-change: transform;
+    }
+
+    @keyframes heartBeat {
+        0% { transform: scale(1); opacity: 0.7; }
+        50% { transform: scale(1.2); opacity: 1; }
+        100% { transform: scale(1); opacity: 0.7; }
+    }
+
+    /* Flower Bouquet */
+    .bouquet-container {
+        position: relative;
+        height: 400px;
+        margin: 20px 0;
+        display: flex;
+        justify-content: center;
+        align-items: flex-end;
+        background: linear-gradient(to bottom, #87CEEB 0%, #87CEEB 60%, #f5f5f5 60%, #f5f5f5 100%);
+        border-radius: 15px;
+        overflow: hidden;
+        touch-action: manipulation;
+    }
+
+    .bouquet-wrapper {
+        position: relative;
+        width: 100%;
+        height: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: flex-end;
+    }
+
+    .flower-item {
+        position: absolute;
+        cursor: pointer;
+        transition: transform 0.3s, opacity 0.3s;
+        z-index: 2;
+        touch-action: manipulation;
+        user-select: none;
+        -webkit-user-select: none;
+    }
+
+    .flower-item:hover {
+        transform: scale(1.1) translateY(-10px);
+    }
+
+    .flower-item:active {
+        transform: scale(1.05) translateY(-5px);
+    }
+
+    .flower-item.clicked {
+        animation: flowerClick 1s ease-out;
+    }
+
+    @keyframes flowerClick {
+        0% { transform: scale(1) rotate(0deg); }
+        50% { transform: scale(1.3) rotate(10deg); }
+        100% { transform: scale(1) rotate(0deg); }
+    }
+
+    .flower-message {
+        position: absolute;
+        top: 20px;
+        left: 0;
+        width: 100%;
+        text-align: center;
+        font-family: 'Dancing Script', cursive;
+        font-size: 28px;
+        color: var(--primary-color);
+        opacity: 0;
+        transition: opacity 0.5s;
+        z-index: 3;
+    }
+
+    .flower-message.show {
+        opacity: 1;
+    }
+
+    .vase {
+        position: absolute;
+        bottom: 0;
+        width: 120px;
+        height: 80px;
+        background-color: #4a90e2;
+        border-radius: 0 0 60px 60px;
+        z-index: 1;
+    }
+
+    .vase::before {
+        content: "";
+        position: absolute;
+        top: -10px;
+        left: -10px;
+        right: -10px;
+        height: 20px;
+        background-color: #4a90e2;
+        border-radius: 10px 10px 0 0;
+    }
+
+    /* Responsive Design */
+    @media (max-width: 768px) {
+        .greeting { font-size: 24px; }
+        .my-love { font-size: 36px; }
+        .question { font-size: 20px; }
+        .button-container { flex-direction: column; align-items: center; }
+        .gift-title { font-size: 42px; }
+        .gift-subtitle { font-size: 18px; }
+        .memories-gallery { grid-template-columns: repeat(2, 1fr); }
+        .counter-display { flex-direction: column; align-items: center; }
+        .counter-unit { width: 100%; max-width: 300px; }
+        .heart-path { width: 200px; height: 200px; }
+        .bouquet-container { height: 300px; }
+        .modal-content { padding: 30px 20px; }
+        .modal-title { font-size: 36px; }
+        .letter { font-size: 16px; }
+        .flower-message { font-size: 24px; }
+    }
+
+    /* iPad specific styles */
+    @media (min-width: 768px) and (max-width: 1024px) {
+        .gift-grid { grid-template-columns: repeat(2, 1fr); }
+        .memories-gallery { grid-template-columns: repeat(2, 1fr); }
+    }
+
+    /* iPhone specific styles */
+    @media (max-width: 414px) {
+        .greeting { font-size: 20px; }
+        .my-love { font-size: 28px; }
+        .question { font-size: 18px; }
+        .choice-button { padding: 12px 24px; font-size: 16px; }
+        .gift-title { font-size: 32px; }
+        .gift-subtitle { font-size: 16px; }
+        .gift-icon { font-size: 36px; }
+        .gift-card { padding: 20px; }
+        .gift-card h3 { font-size: 20px; }
+        .gift-card p { font-size: 14px; }
+        .modal-title { font-size: 28px; }
+        .counter-value { font-size: 36px; }
+        .counter-label { font-size: 14px; }
+        .letter { font-size: 14px; padding: 20px; }
+        .letter-signature { font-size: 16px; }
+        .flower-message { font-size: 20px; }
+        .memories-gallery { grid-template-columns: 1fr; }
+        .daily-photo-date { font-size: 24px; }
+        .daily-photo-caption { font-size: 16px; }
+    }
+</style>
+</head> <body> <!-- Landing Page --> <div id="landingPage" class="landing-page"> <div class="floating-hearts" id="floating-hearts"></div> <div class="container"> <h1 class="greeting">Hello</h1> <h2 class="my-love">my love</h2> <p class="question">Do you want your gift?</p> <div class="button-container"> <button id="yesButton" class="choice-button yes-button">Yes</button> <button id="noButton" class="choice-button no-button">No</button> </div> </div> </div>
+<!-- Gift Page -->
+<div id="giftPage" class="gift-page">
+    <header class="gift-header">
         <div class="container">
-            <h1 class="greeting">Hello</h1>
-            <h2 class="my-love">my love</h2>
-            <p class="question">Do you want your gift?</p>
-            <div class="button-container">
-                <button id="yesButton" class="choice-button yes-button">Yes</button>
-                <button id="noButton" class="choice-button no-button">No</button>
+            <h1 class="gift-title">Your Special Gifts</h1>
+            <p class="gift-subtitle">Choose a gift to open</p>
+        </div>
+    </header>
+
+    <div class="container">
+        <div class="gift-grid">
+            <div class="gift-card" id="memoriesCard">
+                <div class="gift-icon"><i class="fas fa-images"></i></div>
+                <h3>Our Memories</h3>
+                <p>A collection of our special moments together</p>
+            </div>
+
+            <div class="gift-card" id="dailyPhotoCard">
+                <div class="gift-icon"><i class="fas fa-calendar-day"></i></div>
+                <h3>Daily Photo</h3>
+                <p>A special photo just for today</p>
+            </div>
+
+            <div class="gift-card" id="flowerCard">
+                <div class="gift-icon"><i class="fas fa-spa"></i></div>
+                <h3>Flower Bouquet</h3>
+                <p>A special bouquet just for you</p>
+            </div>
+
+            <div class="gift-card" id="letterCard">
+                <div class="gift-icon"><i class="fas fa-envelope-open-text"></i></div>
+                <h3>Love Letter</h3>
+                <p>Words from my heart to yours</p>
+            </div>
+
+            <div class="gift-card" id="counterCard">
+                <div class="gift-icon"><i class="fas fa-heart"></i></div>
+                <h3>Our Journey</h3>
+                <p>Counting every moment we've been together</p>
             </div>
         </div>
     </div>
+</div>
 
-    <!-- Gift Page -->
-    <div id="giftPage" class="gift-page">
-        <header class="gift-header">
-            <div class="container">
-                <h1 class="gift-title">Your Special Gifts</h1>
-                <p class="gift-subtitle">Choose a gift to open</p>
+<!-- Memories Modal -->
+<div id="memoriesModal" class="modal">
+    <div class="modal-content">
+        <span class="close-modal">&times;</span>
+        <h2 class="modal-title">Our Memories</h2>
+        <p>Special moments we've shared together</p>
+        <div class="memories-gallery">
+            <div class="memory-item">
+                <img src="https://i.postimg.cc/PC2hthbn/IMG-20240616-WA0014.jpg" alt="Our memory">
             </div>
-        </header>
+            <div class="memory-item">
+                <img src="https://i.postimg.cc/XGy0cCRq/IMG-20240616-WA0015.jpg" alt="Our memory">
+            </div>
+            <div class="memory-item">
+                <img src="https://i.postimg.cc/DSjV96Fn/IMG-20240616-WA0016.jpg" alt="Our memory">
+            </div>
+            <div class="memory-item">
+                <img src="https://i.postimg.cc/LYyYXWFv/IMG-20240616-WA0017.jpg" alt="Our memory">
+            </div>
+        </div>
+    </div>
+</div>
 
-        <div class="container">
-            <div class="gift-grid">
-                <div class="gift-card" id="memoriesCard">
-                    <div class="gift-icon"><i class="fas fa-images"></i></div>
-                    <h3>Our Memories</h3>
-                    <p>A collection of our special moments together</p>
+<!-- Daily Photo Modal -->
+<div id="dailyPhotoModal" class="modal">
+    <div class="modal-content">
+        <span class="close-modal">&times;</span>
+        <h2 class="modal-title">Photo of the Day</h2>
+        <div class="daily-photo-container">
+            <div class="daily-photo-date" id="dailyPhotoDate"></div>
+            <img class="daily-photo-image" id="dailyPhotoImage" src="" alt="Today's special photo">
+            <p class="daily-photo-caption" id="dailyPhotoCaption"></p>
+            <div class="photo-navigation">
+                <button class="photo-nav-button" id="prevPhotoBtn"><i class="fas fa-chevron-left"></i> Previous</button>
+                <button class="photo-nav-button" id="todayPhotoBtn">Today</button>
+                <button class="photo-nav-button" id="nextPhotoBtn">Next <i class="fas fa-chevron-right"></i></button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Flower Modal -->
+<div id="flowerModal" class="modal">
+    <div class="modal-content">
+        <span class="close-modal">&times;</span>
+        <h2 class="modal-title">Flower Bouquet</h2>
+        <p>Click on the flowers to make them bloom</p>
+        <div class="bouquet-container" id="bouquetContainer">
+            <div class="bouquet-wrapper">
+                <div class="vase"></div>
+                <div class="flower-message" id="flowerMessage">For you 💕</div>
+                <!-- Flowers will be added dynamically -->
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Letter Modal -->
+<div id="letterModal" class="modal">
+    <div class="modal-content">
+        <span class="close-modal">&times;</span>
+        <h2 class="modal-title">A Letter For My Love</h2>
+        <div class="letter">
+            <p>Hi Aisha,</p>
+            <p>I made this cause I feel like I miss you soososso much. You're the best ever and we've actually been together for so long and it's the best ever. You make me the happiest every day, even when I'm not. You're actually like all I could ever ask for and I love you so much.</p>
+            <p>I hope you like this 🥺</p>
+            <p class="letter-signature">- the big H</p>
+        </div>
+    </div>
+</div>
+
+<!-- Counter Modal -->
+<div id="counterModal" class="modal">
+    <div class="modal-content">
+        <span class="close-modal">&times;</span>
+        <h2 class="modal-title">Our Journey Together</h2>
+        <div class="love-counter">
+            <div class="counter-display">
+                <div class="counter-unit">
+                    <span class="counter-value" id="daysCounter">0</span>
+                    <span class="counter-label">Days</span>
                 </div>
-
-                <div class="gift-card" id="flowerCard">
-                    <div class="gift-icon"><i class="fas fa-spa"></i></div>
-                    <h3>Flower Bouquet</h3>
-                    <p>A special bouquet just for you</p>
+                <div class="counter-unit">
+                    <span class="counter-value" id="weeksCounter">0</span>
+                    <span class="counter-label">Weeks</span>
                 </div>
-
-                <div class="gift-card" id="letterCard">
-                    <div class="gift-icon"><i class="fas fa-envelope-open-text"></i></div>
-                    <h3>Love Letter</h3>
-                    <p>Words from my heart to yours</p>
+                <div class="counter-unit">
+                    <span class="counter-value" id="monthsCounter">0</span>
+                    <span class="counter-label">Months</span>
                 </div>
-
-                <div class="gift-card" id="counterCard">
-                    <div class="gift-icon"><i class="fas fa-heart"></i></div>
-                    <h3>Our Journey</h3>
-                    <p>Counting every moment we've been together</p>
-                </div>
-
-                <!-- NEW: Photo of the Day Card -->
-                <div class="gift-card" id="photoDayCard">
-                    <div class="gift-icon"><i class="fas fa-calendar-heart"></i></div>
-                    <h3>Photo of the Day</h3>
-                    <p>A new memory every day just for you</p>
+            </div>
+            <div class="heart-animation">
+                <div class="heart-path">
+                    <span class="heart-beat" style="top: 20%; left: 20%;">❤️</span>
+                    <span class="heart-beat" style="top: 40%; left: 70%; animation-delay: 0.3s;">💕</span>
+                    <span class="heart-beat" style="top: 70%; left: 30%; animation-delay: 0.6s;">💖</span>
                 </div>
             </div>
         </div>
     </div>
+</div>
 
-    <!-- Memories Modal -->
-    <div id="memoriesModal" class="modal">
-        <div class="modal-content">
-            <span class="close-modal">&times;</span>
-            <h2 class="modal-title">Our Memories</h2>
-            <p>Special moments we've shared together</p>
-            <div class="memories-gallery">
-                <div class="memory-item">
-                    <img src="https://i.postimg.cc/PC2hthbn/IMG-20240616-WA0014.jpg" alt="Our memory">
-                </div>
-                <div class="memory-item">
-                    <img src="https://i.postimg.cc/XGy0cCRq/IMG-20240616-WA0015.jpg" alt="Our memory">
-                </div>
-                <div class="memory-item">
-                    <img src="https://i.postimg.cc/DSjV96Fn/IMG-20240616-WA0016.jpg" alt="Our memory">
-                </div>
-                <div class="memory-item">
-                    <img src="https://i.postimg.cc/LYyYXWFv/IMG-20240616-WA0017.jpg" alt="Our memory">
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- Flower Modal -->
-    <div id="flowerModal" class="modal">
-        <div class="modal-content">
-            <span class="close-modal">&times;</span>
-            <h2 class="modal-title">Flower Bouquet</h2>
-            <p>Click on the flowers to make them bloom</p>
-            <div class="bouquet-container" id="bouquetContainer">
-                <div class="bouquet-wrapper">
-                    <div class="vase"></div>
-                    <div class="flower-message" id="flowerMessage">For you 💕</div>
-                    <!-- Flowers will be added dynamically -->
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- Letter Modal -->
-    <div id="letterModal" class="modal">
-        <div class="modal-content">
-            <span class="close-modal">&times;</span>
-            <h2 class="modal-title">A Letter For My Love</h2>
-            <div class="letter">
-                <p>Hi Aisha,</p>
-                <p>I made this cause I feel like I miss you soososso much. You're the best ever and we've actually been together for so long and it's the best ever. You make me the happiest every day, even when I'm not. You're actually like all I could ever ask for and I love you so much.</p>
-                <p>I hope you like this 🥺</p>
-                <p class="letter-signature">- the big H</p>
-            </div>
-        </div>
-    </div>
-
-    <!-- Counter Modal -->
-    <div id="counterModal" class="modal">
-        <div class="modal-content">
-            <span class="close-modal">&times;</span>
-            <h2 class="modal-title">Our Journey Together</h2>
-            <div class="love-counter">
-                <div class="counter-display">
-                    <div class="counter-unit">
-                        <span class="counter-value" id="daysCounter">0</span>
-                        <span class="counter-label">Days</span>
-                    </div>
-                    <div class="counter-unit">
-                        <span class="counter-value" id="weeksCounter">0</span>
-                        <span class="counter-label">Weeks</span>
-                    </div>
-                    <div class="counter-unit">
-                        <span class="counter-value" id="monthsCounter">0</span>
-                        <span class="counter-label">Months</span>
-                    </div>
-                </div>
-                <div class="heart-animation">
-                    <div class="heart-path">
-                        <span class="heart-beat" style="top: 20%; left: 20%;">❤️</span>
-                        <span class="heart-beat" style="top: 40%; left: 70%; animation-delay: 0.3s;">💕</span>
-                        <span class="heart-beat" style="top: 70%; left: 30%; animation-delay: 0.6s;">💖</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- NEW: Photo of the Day Modal -->
-    <div id="photoDayModal" class="modal">
-        <div class="modal-content">
-            <span class="close-modal">&times;</span>
-            <h2 class="modal-title">Photo of the Day</h2>
-            <div class="photo-day-container">
-                <div class="photo-day-date" id="currentDate"></div>
-                <div class="photo-day-image-container">
-                    <img id="dailyPhoto" class="photo-day-image" src="" alt="Photo of the Day">
-                </div>
-                <div class="photo-day-caption" id="photoCaption">A special memory just for today 💕</div>
-                <div class="photo-day-nav">
-                    <button id="prevPhoto" title="Previous photo"><i class="fas fa-chevron-left"></i></button>
-                    <button id="nextPhoto" title="Next photo"><i class="fas fa-chevron-right"></i></button>
-                </div>
-                <div class="photo-counter" id="photoCounter"></div>
-            </div>
-        </div>
-    </div>
-
-    <script>
-        // Create floating hearts
-        function createFloatingHearts() {
-            const container = document.getElementById('floating-hearts');
-            const heartSymbols = ['❤️', '💕', '💖', '💗', '💝'];
+<script>
+    // Create floating hearts
+    function createFloatingHearts() {
+        const container = document.getElementById('floating-hearts');
+        const heartSymbols = ['❤️', '💕', '💖', '💗', '💝'];
+        
+        setInterval(() => {
+            const heart = document.createElement('div');
+            heart.className = 'floating-heart';
+            heart.textContent = heartSymbols[Math.floor(Math.random() * heartSymbols.length)];
+            heart.style.left = Math.random() * 100 + '%';
+            heart.style.animationDuration = Math.random() * 3 + 4 + 's';
+            heart.style.opacity = Math.random() * 0.3 + 0.2;
             
-            setInterval(() => {
-                const heart = document.createElement('div');
-                heart.className = 'floating-heart';
-                heart.textContent = heartSymbols[Math.floor(Math.random() * heartSymbols.length)];
-                heart.style.left = Math.random() * 100 + '%';
-                heart.style.animationDuration = Math.random() * 3 + 4 + 's';
-                heart.style.opacity = Math.random() * 0.3 + 0.2;
-                
-                container.appendChild(heart);
-                
-                setTimeout(() => {
-                    heart.remove();
-                }, 7000);
-            }, 1000);
+            container.appendChild(heart);
+            
+            setTimeout(() => {
+                heart.remove();
+            }, 7000);
+        }, 1000);
+    }
+
+    // Initialize floating hearts
+    createFloatingHearts();
+
+    // Landing page functionality
+    const landingPage = document.getElementById('landingPage');
+    const giftPage = document.getElementById('giftPage');
+    const yesButton = document.getElementById('yesButton');
+    const noButton = document.getElementById('noButton');
+    let noClickCount = 0;
+
+    yesButton.addEventListener('click', () => {
+        landingPage.style.display = 'none';
+        giftPage.style.display = 'block';
+    });
+
+    noButton.addEventListener('click', () => {
+        noClickCount++;
+        
+        const currentSize = window.getComputedStyle(yesButton).fontSize;
+        const newSize = parseInt(currentSize) + 5 + 'px';
+        yesButton.style.fontSize = newSize;
+        yesButton.style.padding = `${15 + noClickCount * 2}px ${30 + noClickCount * 4}px`;
+        
+        if (noClickCount === 1) noButton.textContent = "Are you sure?";
+        else if (noClickCount === 2) noButton.textContent = "Pretty please?";
+        else if (noClickCount === 3) noButton.textContent = "I'll be sad...";
+        else if (noClickCount === 4) noButton.textContent = "Last chance...";
+        else {
+            noButton.textContent = "Just click yes already!";
+            noButton.style.fontSize = '12px';
+            noButton.style.padding = '10px 15px';
         }
+    });
 
-        // Initialize floating hearts
-        createFloatingHearts();
+    // Modal functionality
+    const memoriesCard = document.getElementById('memoriesCard');
+    const dailyPhotoCard = document.getElementById('dailyPhotoCard');
+    const flowerCard = document.getElementById('flowerCard');
+    const letterCard = document.getElementById('letterCard');
+    const counterCard = document.getElementById('counterCard');
 
-        // Landing page functionality
-        const landingPage = document.getElementById('landingPage');
-        const giftPage = document.getElementById('giftPage');
-        const yesButton = document.getElementById('yesButton');
-        const noButton = document.getElementById('noButton');
-        let noClickCount = 0;
+    const memoriesModal = document.getElementById('memoriesModal');
+    const dailyPhotoModal = document.getElementById('dailyPhotoModal');
+    const flowerModal = document.getElementById('flowerModal');
+    const letterModal = document.getElementById('letterModal');
+    const counterModal = document.getElementById('counterModal');
 
-        yesButton.addEventListener('click', () => {
-            landingPage.style.display = 'none';
-            giftPage.style.display = 'block';
+    memoriesCard.addEventListener('click', () => { memoriesModal.style.display = 'flex'; });
+    dailyPhotoCard.addEventListener('click', () => { dailyPhotoModal.style.display = 'flex'; loadDailyPhoto(); });
+    flowerCard.addEventListener('click', () => { flowerModal.style.display = 'flex'; setupBouquet(); });
+    letterCard.addEventListener('click', () => { letterModal.style.display = 'flex'; });
+    counterCard.addEventListener('click', () => { counterModal.style.display = 'flex'; updateCounter(); });
+
+    document.querySelectorAll('.close-modal').forEach(closeBtn => {
+        closeBtn.addEventListener('click', () => {
+            document.querySelectorAll('.modal').forEach(modal => { modal.style.display = 'none'; });
         });
+    });
 
-        noButton.addEventListener('click', () => {
-            noClickCount++;
-            
-            const currentSize = window.getComputedStyle(yesButton).fontSize;
-            const newSize = parseInt(currentSize) + 5 + 'px';
-            yesButton.style.fontSize = newSize;
-            yesButton.style.padding = `${15 + noClickCount * 2}px ${30 + noClickCount * 4}px`;
-            
-            if (noClickCount === 1) noButton.textContent = "Are you sure?";
-            else if (noClickCount === 2) noButton.textContent = "Pretty please?";
-            else if (noClickCount === 3) noButton.textContent = "I'll be sad...";
-            else if (noClickCount === 4) noButton.textContent = "Last chance...";
-            else {
-                noButton.textContent = "Just click yes already!";
-                noButton.style.fontSize = '12px';
-                noButton.style.padding = '10px 15px';
-            }
-        });
-
-        // Modal functionality
-        const memoriesCard = document.getElementById('memoriesCard');
-        const flowerCard = document.getElementById('flowerCard');
-        const letterCard = document.getElementById('letterCard');
-        const counterCard = document.getElementById('counterCard');
-        const photoDayCard = document.getElementById('photoDayCard');
-
-        const memoriesModal = document.getElementById('memoriesModal');
-        const flowerModal = document.getElementById('flowerModal');
-        const letterModal = document.getElementById('letterModal');
-        const counterModal = document.getElementById('counterModal');
-        const photoDayModal = document.getElementById('photoDayModal');
-
-        memoriesCard.addEventListener('click', () => { memoriesModal.style.display = 'flex'; });
-        flowerCard.addEventListener('click', () => { flowerModal.style.display = 'flex'; setupBouquet(); });
-        letterCard.addEventListener('click', () => { letterModal.style.display = 'flex'; });
-        counterCard.addEventListener('click', () => { counterModal.style.display = 'flex'; updateCounter(); });
-        photoDayCard.addEventListener('click', () => { photoDayModal.style.display = 'flex'; initPhotoDay(); });
-
-        document.querySelectorAll('.close-modal').forEach(closeBtn => {
-            closeBtn.addEventListener('click', () => {
-                document.querySelectorAll('.modal').forEach(modal => { modal.style.display = 'none'; });
-            });
-        });
-
-        window.addEventListener('click', (e) => {
-            if (e.target.classList.contains('modal')) {
-                e.target.style.display = 'none';
-            }
-        });
-
-        // Calculate days together (updated to May 25, 2025)
-        function updateCounter() {
-            const startDate = new Date('2025-05-25T00:00:00+01:00'); // UK time zone (BST)
-            const now = new Date();
-            
-            // Calculate total time difference
-            const diffTime = Math.abs(now - startDate);
-            const diffDays = Math.floor(diffTime / (1000 * 60 * 60 * 24));
-            const diffWeeks = Math.floor(diffDays / 7);
-            const diffMonths = Math.floor(diffDays / 30.44); // Average month length
-            
-            // Update counters with animation
-            animateValue('daysCounter', 0, diffDays, 1000);
-            animateValue('weeksCounter', 0, diffWeeks, 1000);
-            animateValue('monthsCounter', 0, diffMonths, 1000);
+    window.addEventListener('click', (e) => {
+        if (e.target.classList.contains('modal')) {
+            e.target.style.display = 'none';
         }
+    });
 
-        // Animate counter values
-        function animateValue(id, start, end, duration) {
-            const element = document.getElementById(id);
-            const range = end - start;
-            const increment = end > start ? 1 : -1;
-            const stepTime = Math.abs(Math.floor(duration / range));
-            let current = start;
+    // Calculate days together (updated to May 25, 2025)
+    function updateCounter() {
+        const startDate = new Date('2025-05-25T00:00:00+01:00'); // UK time zone (BST)
+        const now = new Date();
+        
+        // Calculate total time difference
+        const diffTime = Math.abs(now - startDate);
+        const diffDays = Math.floor(diffTime / (1000 * 60 * 60 * 24));
+        const diffWeeks = Math.floor(diffDays / 7);
+        const diffMonths = Math.floor(diffDays / 30.44); // Average month length
+        
+        // Update counters with animation
+        animateValue('daysCounter', 0, diffDays, 1000);
+        animateValue('weeksCounter', 0, diffWeeks, 1000);
+        animateValue('monthsCounter', 0, diffMonths, 1000);
+    }
+
+    // Animate counter values
+    function animateValue(id, start, end, duration) {
+        const element = document.getElementById(id);
+        const range = end - start;
+        const increment = end > start ? 1 : -1;
+        const stepTime = Math.abs(Math.floor(duration / range));
+        let current = start;
+        
+        const timer = setInterval(function() {
+            current += increment;
+            element.textContent = current;
+            if (current == end) {
+                clearInterval(timer);
+            }
+        }, stepTime);
+    }
+
+    // Daily Photo functionality
+    const dailyPhotos = [
+        {
+            url: "https://i.postimg.cc/PC2hthbn/IMG-20240616-WA0014.jpg",
+            caption: "Remember this beautiful day? Every moment with you is precious."
+        },
+        {
+            url: "https://i.postimg.cc/XGy0cCRq/IMG-20240616-WA0015.jpg",
+            caption: "Your smile lights up my world every single day."
+        },
+        {
+            url: "https://i.postimg.cc/DSjV96Fn/IMG-20240616-WA0016.jpg",
+            caption: "Together is my favorite place to be."
+        },
+        {
+            url: "https://i.postimg.cc/LYyYXWFv/IMG-20240616-WA0017.jpg",
+            caption: "Making memories that will last a lifetime with you."
+        },
+        {
+            url: "https://i.postimg.cc/PC2hthbn/IMG-20240616-WA0014.jpg",
+            caption: "Every day with you is a gift I cherish."
+        }
+        // Add more photos here as needed
+    ];
+
+    let currentPhotoIndex = 0;
+
+    function loadDailyPhoto() {
+        // Calculate which photo to show based on today's date
+        const today = new Date();
+        const startDate = new Date('2025-05-25'); // Start date for the photo cycle
+        const daysDiff = Math.floor((today - startDate) / (1000 * 60 * 60 * 24));
+        currentPhotoIndex = daysDiff % dailyPhotos.length;
+        
+        // Update the photo display
+        updateDailyPhotoDisplay();
+    }
+
+    function updateDailyPhotoDisplay() {
+        const photo = dailyPhotos[currentPhotoIndex];
+        const photoDate = new Date();
+        
+        // Format the date
+        const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+        const formattedDate = photoDate.toLocaleDateString('en-US', options);
+        
+        // Update the modal content
+        document.getElementById('dailyPhotoDate').textContent = formattedDate;
+        document.getElementById('dailyPhotoImage').src = photo.url;
+        document.getElementById('dailyPhotoCaption').textContent = photo.caption;
+        
+        // Update navigation buttons
+        document.getElementById('prevPhotoBtn').disabled = currentPhotoIndex === 0;
+        document.getElementById('nextPhotoBtn').disabled = currentPhotoIndex === dailyPhotos.length - 1;
+    }
+
+    // Photo navigation functionality
+    document.getElementById('prevPhotoBtn').addEventListener('click', () => {
+        if (currentPhotoIndex > 0) {
+            currentPhotoIndex--;
+            updateDailyPhotoDisplay();
+        }
+    });
+
+    document.getElementById('nextPhotoBtn').addEventListener('click', () => {
+        if (currentPhotoIndex < dailyPhotos.length - 1) {
+            currentPhotoIndex++;
+            updateDailyPhotoDisplay();
+        }
+    });
+
+    document.getElementById('todayPhotoBtn').addEventListener('click', () => {
+        loadDailyPhoto();
+    });
+
+    // Flower bouquet functionality
+    function setupBouquet() {
+        const bouquetWrapper = document.querySelector('.bouquet-wrapper');
+        const flowerMessage = document.getElementById('flowerMessage');
+        
+        // Clear any existing flowers
+        const existingFlowers = bouquetWrapper.querySelectorAll('.flower-item');
+        existingFlowers.forEach(flower => flower.remove());
+        
+        // Create flowers
+        const flowerTypes = ['🌹', '🌸', '🌺', '🌷', '🌻', '🌼', '💐'];
+        const flowerCount = 7;
+        let flowersClicked = 0;
+        
+        for (let i = 0; i < flowerCount; i++) {
+            const flower = document.createElement('div');
+            flower.className = 'flower-item';
+            flower.textContent = flowerTypes[i];
             
-            const timer = setInterval(function() {
-                current += increment;
-                element.textContent = current;
-                if (current == end) {
-                    clearInterval(timer);
+            // Position flowers in a bouquet arrangement
+            const angle = (i / flowerCount) * Math.PI * 2;
+            const radius = 60;
+            const x = Math.cos(angle) * radius;
+            const y = Math.sin(angle) * radius * 0.7 - 50;
+            
+            flower.style.left = `calc(50% + ${x}px)`;
+            flower.style.bottom = `${80 - y}px`;
+            flower.style.fontSize = `${30 + Math.random() * 20}px`;
+            
+            // Add click event
+            flower.addEventListener('click', function() {
+                this.classList.add('clicked');
+                flowersClicked++;
+                
+                // Show message after clicking all flowers
+                if (flowersClicked === flowerCount) {
+                    flowerMessage.classList.add('show');
                 }
-            }, stepTime);
+                
+                // Remove animation class after animation completes
+                setTimeout(() => {
+                    this.classList.remove('clicked');
+                }, 1000);
+            });
+            
+            // Add touch event for iOS devices
+            flower.addEventListener('touchstart', function(e) {
+                e.preventDefault();
+                this.click();
+            });
+            
+            bouquetWrapper.appendChild(flower);
         }
+    }
 
-        // Flower bouquet functionality
-        function setupBouquet() {
-            const bouquetWrapper = document.querySelector('.bouquet-wrapper');
-            const flowerMessage = document.getElementById('flowerMessage');
-            
-            // Clear any existing flowers
-            const existingFlowers = bouquetWrapper.querySelectorAll('.flower-item');
-            existingFlowers.forEach(flower => flower.remove());
-            
-            // Create flowers
-            const flowerTypes = ['🌹', '🌸', '🌺', '🌷', '🌻', '🌼', '💐'];
-            const flowerCount = 7;
-            let flowersClicked = 0;
-            
-            for (let i = 0; i < flowerCount; i++) {
-                const flower = document.createElement('div');
-                flower.className = 'flower-item';
-                flower.textContent = flowerTypes[i];
-                
-                // Position flowers in a bouquet arrangement
-                const angle = (i / flowerCount) * Math.PI * 2;
-                const radius = 60;
-                const x = Math.cos(angle) * radius;
-                const y = Math.sin(angle) * radius * 0.7 - 50;
-                
-                flower.style.left = `calc(50% + ${x}px)`;
-                flower.style.bottom = `${80 - y}px`;
-                flower.style.fontSize = `${30 + Math.random() * 20}px`;
-                
-                // Add click event
-                flower.addEventListener('click', function() {
-                    this.classList.add('clicked');
-                    flowersClicked++;
-                    
-                    // Show message after clicking all flowers
-                    if (flowersClicked === flowerCount) {
-                        flowerMessage.classList.add('show');
-                    }
-                    
-                    // Remove animation class after animation completes
-                    setTimeout(() => {
-                        this.classList.remove('clicked');
-                    }, 1000);
-                });
-                
-                // Add touch event for iOS devices
-                flower.addEventListener('touchstart', function(e) {
-                    e.preventDefault();
-                    this.click();
-                });
-                
-                bouquetWrapper.appendChild(flower);
-            }
-        }
-
-        // Initialize counter
-        updateCounter();
-
-        // PHOTO OF THE DAY FUNCTIONALITY
-        // Add your photo URLs here - it will cycle through them daily!
-        const photoCollection = [
-            {
-                url: "https://i.postimg.cc/PC2hthbn/IMG-20240616-WA0014.jpg",
-                caption: "Remember this beautiful day together? 💕"
-            },
-           
+    // Initialize counter
+    updateCounter();
+</script>
+</body>
+</html>
